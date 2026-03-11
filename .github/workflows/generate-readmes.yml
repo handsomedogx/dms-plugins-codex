@@ -14,6 +14,13 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    env:
+      README_TRANSLATOR_PROVIDER: ${{ vars.README_TRANSLATOR_PROVIDER }}
+      README_TRANSLATOR_OPENAI_API_KEY: ${{ secrets.README_TRANSLATOR_OPENAI_API_KEY }}
+      README_TRANSLATOR_OPENAI_BASE_URL: ${{ vars.README_TRANSLATOR_OPENAI_BASE_URL }}
+      README_TRANSLATOR_OPENAI_MODEL: ${{ vars.README_TRANSLATOR_OPENAI_MODEL }}
+      README_TRANSLATOR_DEEPL_API_KEY: ${{ secrets.README_TRANSLATOR_DEEPL_API_KEY }}
+      README_TRANSLATOR_DEEPL_API_URL: ${{ vars.README_TRANSLATOR_DEEPL_API_URL }}
 
     steps:
       - name: Check out repository
@@ -25,6 +32,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Validate generator
+        run: python3 -m py_compile scripts/generate_readmes.py
 
       - name: Generate multilingual readmes
         run: python3 scripts/generate_readmes.py

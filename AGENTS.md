@@ -28,6 +28,8 @@ Generated documentation rule:
 - do not manually edit generated readme files
 - update `content/site.json` and, when necessary, `scripts/generate_readmes.py`
 - regenerate with `python3 scripts/generate_readmes.py`
+- automatic translation can use either OpenAI or DeepL from CI secrets
+- supported env vars are `README_TRANSLATOR_PROVIDER`, `README_TRANSLATOR_OPENAI_API_KEY`, `README_TRANSLATOR_OPENAI_BASE_URL`, `README_TRANSLATOR_OPENAI_MODEL`, `README_TRANSLATOR_DEEPL_API_KEY`, and `README_TRANSLATOR_DEEPL_API_URL`
 
 ## Source Of Truth
 
