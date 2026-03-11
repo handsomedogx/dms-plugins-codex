@@ -52,14 +52,14 @@ Repository links, compatibility notes, and summaries stay in one public place.
 
 Use this section for the plugins you want people to notice first. Keep it short and visual.
 
-### Coming Soon
+### Dank Translate
 
-- Plugin: `TBD`
+- Plugin: `dankTranslate`
 - Type: `Widget`
-- Repository: Add GitHub link
-- Demo: Add video link
-- Status: `Planned`
-- Summary: Short one-line value proposition
+- Repository: [GitHub](https://github.com/handsomedogx/DankTranslate)
+- Demo: Pending
+- Status: `Beta`
+- Summary: Translate English and Chinese text from a popout or screenshot OCR workflow.
 
 **Template**
 
@@ -80,7 +80,7 @@ Add one row per public or released plugin.
 
 | Plugin | Type | Repository | Demo | DMS | Status | Summary |
 | --- | --- | --- | --- | --- | --- | --- |
-| _Coming Soon_ | Widget | Add GitHub link | Add video link | 1.4+ | Planned | Short one-line value proposition |
+| Dank Translate | Widget | [GitHub](https://github.com/handsomedogx/DankTranslate) | Pending | 1.4+ | Beta | Translate English and Chinese text from a popout or screenshot OCR workflow. |
 
 **Template for a new row**
 
@@ -158,8 +158,8 @@ Shared development standards for all plugins are maintained in [AGENTS.md](./AGE
 
 ## Roadmap
 
-- add live plugin entries after repository migration
-- add real featured plugins with repository and video links
+- add more live plugin entries after repository migration
+- add demo video links for published plugins
 - add thumbnails or covers for each public plugin
 - add compatibility notes across DMS versions
 - add release and changelog links for each plugin
