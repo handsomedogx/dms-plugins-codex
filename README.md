@@ -8,7 +8,7 @@
 
 > Independent DMS plugins. Shared standards. One public directory.
 
-**English** | [简体中文](./README.zh-CN.md)
+**English** | [Simplified Chinese](./README.zh-CN.md)
 
 `DMS Plugin Index` is the public landing page for my Dank Linux / DankMaterialShell plugin ecosystem.
 This repository keeps the shared rules, plugin discovery links, demo references, and high-level compatibility notes.

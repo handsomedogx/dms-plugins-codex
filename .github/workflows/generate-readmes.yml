@@ -15,15 +15,9 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     env:
-      README_TRANSLATOR_PROVIDER: ${{ vars.README_TRANSLATOR_PROVIDER }}
       README_TRANSLATOR_AZURE_API_KEY: ${{ secrets.README_TRANSLATOR_AZURE_API_KEY }}
       README_TRANSLATOR_AZURE_ENDPOINT: ${{ vars.README_TRANSLATOR_AZURE_ENDPOINT }}
       README_TRANSLATOR_AZURE_REGION: ${{ vars.README_TRANSLATOR_AZURE_REGION }}
-      README_TRANSLATOR_OPENAI_API_KEY: ${{ secrets.README_TRANSLATOR_OPENAI_API_KEY }}
-      README_TRANSLATOR_OPENAI_BASE_URL: ${{ vars.README_TRANSLATOR_OPENAI_BASE_URL }}
-      README_TRANSLATOR_OPENAI_MODEL: ${{ vars.README_TRANSLATOR_OPENAI_MODEL }}
-      README_TRANSLATOR_DEEPL_API_KEY: ${{ secrets.README_TRANSLATOR_DEEPL_API_KEY }}
-      README_TRANSLATOR_DEEPL_API_URL: ${{ vars.README_TRANSLATOR_DEEPL_API_URL }}
 
     steps:
       - name: Check out repository
@@ -38,6 +32,12 @@ jobs:
 
       - name: Validate generator
         run: python3 -m py_compile scripts/generate_readmes.py
+
+      - name: Validate Azure Translator config
+        shell: bash
+        run: |
+          test -n "$README_TRANSLATOR_AZURE_API_KEY" || { echo "Missing README_TRANSLATOR_AZURE_API_KEY"; exit 1; }
+          test -n "$README_TRANSLATOR_AZURE_REGION" || { echo "Missing README_TRANSLATOR_AZURE_REGION"; exit 1; }
 
       - name: Generate multilingual readmes
         run: python3 scripts/generate_readmes.py

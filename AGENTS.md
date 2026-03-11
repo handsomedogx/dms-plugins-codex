@@ -28,9 +28,10 @@ Generated documentation rule:
 - do not manually edit generated readme files
 - update `content/site.json` and, when necessary, `scripts/generate_readmes.py`
 - regenerate with `python3 scripts/generate_readmes.py`
-- root index content should be maintained in Chinese as the single source language
-- automatic translation can use Azure Translator, OpenAI, or DeepL from CI secrets
-- supported env vars are `README_TRANSLATOR_PROVIDER`, `README_TRANSLATOR_AZURE_API_KEY`, `README_TRANSLATOR_AZURE_ENDPOINT`, `README_TRANSLATOR_AZURE_REGION`, `README_TRANSLATOR_OPENAI_API_KEY`, `README_TRANSLATOR_OPENAI_BASE_URL`, `README_TRANSLATOR_OPENAI_MODEL`, `README_TRANSLATOR_DEEPL_API_KEY`, and `README_TRANSLATOR_DEEPL_API_URL`
+- root index content should be maintained in English as the single source language
+- all translated readmes should be generated through Azure Translator only
+- local or CI generation requires `README_TRANSLATOR_AZURE_API_KEY` and `README_TRANSLATOR_AZURE_REGION`
+- supported env vars are `README_TRANSLATOR_AZURE_API_KEY`, `README_TRANSLATOR_AZURE_ENDPOINT`, and `README_TRANSLATOR_AZURE_REGION`
 
 ## Source Of Truth
 

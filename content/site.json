@@ -1,89 +1,59 @@
 {
   "title": "DMS Plugin Index",
-  "source_language": "zh-CN",
-  "tagline": {
-    "zh-CN": "独立 DMS 插件，共享开发规范，统一公开目录。"
-  },
-  "intro": {
-    "zh-CN": [
-      "`DMS Plugin Index` 是我维护的 Dank Linux / DankMaterialShell 插件生态公开入口页。",
-      "这个仓库用于维护共享规范、插件索引链接、演示视频入口，以及高层级兼容性说明。",
-      "插件源码不放在这里。每个插件都会在各自独立的仓库中开发和发布。"
-    ]
-  },
+  "source_language": "en",
+  "tagline": "Independent DMS plugins. Shared standards. One public directory.",
+  "intro": [
+    "`DMS Plugin Index` is the public landing page for my Dank Linux / DankMaterialShell plugin ecosystem.",
+    "This repository keeps the shared rules, plugin discovery links, demo references, and high-level compatibility notes.",
+    "Plugin source code does not live here. Each plugin is developed and released in its own repository."
+  ],
   "quick_links": [
     {
-      "label": {
-        "zh-CN": "开发规范"
-      },
+      "label": "Development rules",
       "href": "./AGENTS.md"
     },
     {
-      "label": {
-        "zh-CN": "DMS 文档"
-      },
+      "label": "DMS docs",
       "href": "https://danklinux.com/docs/"
     },
     {
-      "label": {
-        "zh-CN": "插件开发指南"
-      },
+      "label": "Plugin development guide",
       "href": "https://danklinux.com/docs/dankmaterialshell/plugin-development"
     },
     {
-      "label": {
-        "zh-CN": "官方插件注册表"
-      },
+      "label": "Official plugin registry",
       "href": "https://plugins.danklinux.com/"
     }
   ],
   "highlights": [
     {
       "icon": "repo.svg",
-      "title": {
-        "zh-CN": "一插件一仓库"
-      },
-      "text": {
-        "zh-CN": "每个公开插件都维护在独立源码仓库中，并独立进行发布。"
-      }
+      "title": "One Repo Per Plugin",
+      "text": "Every public plugin lives in its own source repository and release flow."
     },
     {
       "icon": "rules.svg",
-      "title": {
-        "zh-CN": "统一开发规范"
-      },
-      "text": {
-        "zh-CN": "这个根仓库集中维护工作流、约定和发布规范。"
-      }
+      "title": "Shared Standards",
+      "text": "This root repository stores the workflows, conventions, and publishing rules."
     },
     {
       "icon": "video.svg",
-      "title": {
-        "zh-CN": "视频优先展示"
-      },
-      "text": {
-        "zh-CN": "每个插件条目都可以链接到一个展示真实工作流的简短演示视频。"
-      }
+      "title": "Video-First Showcase",
+      "text": "Each plugin entry can point to a short demo video that shows the real workflow."
     },
     {
       "icon": "spark.svg",
-      "title": {
-        "zh-CN": "公开插件目录"
-      },
-      "text": {
-        "zh-CN": "仓库链接、兼容性说明和插件摘要会统一收敛在一个公开目录里。"
-      }
+      "title": "Public Plugin Directory",
+      "text": "Repository links, compatibility notes, and summaries stay in one public place."
     }
   ],
   "featured": [],
   "plugins": [],
-  "roadmap": {
-    "zh-CN": [
-      "在插件仓库迁移完成后补充真实条目",
-      "补充带仓库链接和视频链接的精选插件",
-      "为每个公开插件补充缩略图或封面图",
-      "补充跨 DMS 版本的兼容性说明",
-      "补充每个插件的发布页和更新日志链接"
-    ]
-  }
+  "roadmap": [
+    "add live plugin entries after repository migration",
+    "add real featured plugins with repository and video links",
+    "add thumbnails or covers for each public plugin",
+    "add compatibility notes across DMS versions",
+    "add release and changelog links for each plugin"
+  ]
 }
