@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="./assets/icons/index.svg" width="92" alt="DMS Plugin Index icon" />
+  <img src="./assets/icons/index.svg" width="92" alt="DMS Codex Plugin Index icon" />
 </p>
 
-# DMS Plugin Index
+# DMS Codex Plugin Index
 
 > Independent DMS plugins. Shared standards. One public directory.
 
-`DMS Plugin Index` is the public landing page for my Dank Linux / DankMaterialShell plugin ecosystem.
+`DMS Codex Plugin Index` is the public landing page for my Dank Linux / DankMaterialShell plugin ecosystem.
 This repository keeps the shared rules, plugin discovery links, demo references, and high-level compatibility notes.
 Plugin source code does not live here. Each plugin is developed and released in its own repository.
 
