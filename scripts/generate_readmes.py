@@ -103,73 +103,6 @@ UI_SOURCE = {
     "language_zh": "简体中文",
 }
 
-UI_FALLBACKS = {
-    "en": {
-        "generated_notice": "AUTO-GENERATED FILE. Edit `content/site.json` or `scripts/generate_readmes.py` instead.",
-        "start_here": "Start Here",
-        "at_a_glance": "At A Glance",
-        "featured": "Featured Plugins",
-        "featured_intro": "Use this section for the plugins you want people to notice first. Keep it short and visual.",
-        "coming_soon": "Coming Soon",
-        "plugin": "Plugin",
-        "type": "Type",
-        "repository": "Repository",
-        "demo": "Demo",
-        "status": "Status",
-        "summary": "Summary",
-        "add_repo": "Add GitHub link",
-        "add_demo": "Add video link",
-        "planned": "Planned",
-        "placeholder_summary": "Short one-line value proposition",
-        "featured_template": "Template",
-        "featured_template_block": "### Plugin Name\n\n- Plugin: `plugin-id`\n- Type: `Widget / Launcher / Daemon / Desktop`\n- Repository: [GitHub](https://github.com/<user>/<repo>)\n- Demo: [Video](https://example.com/demo)\n- Status: `Active`\n- Summary: one-line explanation of what makes the plugin useful",
-        "directory": "Plugin Directory",
-        "directory_intro": "Add one row per public or released plugin.",
-        "dms": "DMS",
-        "directory_row_template": "| Plugin Name | Widget / Launcher / Daemon / Desktop | [GitHub](https://github.com/<user>/<repo>) | [Video](https://example.com/demo) | 1.4+ | Active | Short one-line description |",
-        "template_for_row": "Template for a new row",
-        "recommended_statuses": "Recommended status labels",
-        "status_active": "Active",
-        "status_beta": "Beta",
-        "status_archived": "Archived",
-        "demo_media": "Demo And Media",
-        "demo_media_intro": "Each public plugin entry should eventually have:",
-        "media_repo": "one repository link",
-        "media_demo": "one demo video link",
-        "media_summary": "one concise summary",
-        "media_compat": "one compatibility note if needed",
-        "media_local": "Optional local media can live under `assets/` using the plugin id or repository name:",
-        "media_coverage": "Recommended demo coverage:",
-        "coverage_entry": "show the widget or entry point in the first few seconds",
-        "coverage_flow": "show the main workflow in under 30 to 60 seconds",
-        "coverage_real": "show one real interaction instead of only static screenshots",
-        "standards": "Standards",
-        "standards_intro": "Shared development standards for all plugins are maintained in [AGENTS.md](./AGENTS.md).",
-        "core_rules": "Core rules",
-        "rule_root": "this root repository tracks standards and navigation only",
-        "rule_repo": "each plugin must have its own independent Git repository",
-        "rule_workflow": "plugin repositories should follow the shared DMS workflow documented in `AGENTS.md`",
-        "rule_commit": "commit messages use the format `<type>: <summary>`",
-        "examples": "Examples",
-        "example_1": "`feat: add weather plugin entry`",
-        "example_2": "`docs: update plugin publishing rules`",
-        "example_3": "`fix: correct repository link for launcher plugin`",
-        "release_model": "Release Model",
-        "release_steps": [
-            "build and maintain the plugin in its own repository",
-            "document installation and usage in that plugin repository",
-            "publish demo material",
-            "link the repository and video back here",
-            "update compatibility and status when the plugin changes"
-        ],
-        "repo_layout": "Repository Layout",
-        "roadmap": "Roadmap",
-        "language_en": "English",
-        "language_zh": "简体中文",
-    }
-}
-
-
 class TranslationError(RuntimeError):
     pass
 
@@ -284,6 +217,47 @@ class DeepLTranslator(Translator):
         return [str(item["text"]) for item in translations]
 
 
+class AzureTranslator(Translator):
+    def __init__(self, api_key: str, endpoint: str, region: str) -> None:
+        super().__init__()
+        self.api_key = api_key
+        self.endpoint = endpoint.rstrip("/")
+        self.region = region
+
+    def translate_many(self, texts: list[str], source_lang: str, target_lang: str) -> list[str]:
+        if not texts:
+            return []
+
+        azure_langs = {
+            "en": "en",
+            "zh-CN": "zh-Hans",
+        }
+        if source_lang not in azure_langs or target_lang not in azure_langs:
+            raise TranslationError(f"Azure Translator does not support the configured language pair: {source_lang} -> {target_lang}")
+
+        payload = [{"text": text} for text in texts]
+        response = post_json(
+            f"{self.endpoint}/translate?api-version=3.0&from={azure_langs[source_lang]}&to={azure_langs[target_lang]}",
+            payload,
+            {
+                "Ocp-Apim-Subscription-Key": self.api_key,
+                "Ocp-Apim-Subscription-Region": self.region,
+                "Content-Type": "application/json",
+            },
+        )
+
+        if not isinstance(response, list) or len(response) != len(texts):
+            raise TranslationError("Azure translation result did not return the expected response list.")
+
+        translations: list[str] = []
+        for item in response:
+            try:
+                translations.append(str(item["translations"][0]["text"]))
+            except (KeyError, IndexError, TypeError) as exc:
+                raise TranslationError(f"Azure translation response was malformed: {response!r}") from exc
+        return translations
+
+
 def load_content() -> dict[str, Any]:
     return json.loads(CONTENT_PATH.read_text(encoding="utf-8"))
 
@@ -325,12 +299,24 @@ def parse_json_text(text: str) -> dict[str, Any]:
 def build_translator() -> Translator | None:
     provider = os.getenv("README_TRANSLATOR_PROVIDER", "").strip().lower()
     if not provider:
-        if os.getenv("README_TRANSLATOR_OPENAI_API_KEY"):
+        if os.getenv("README_TRANSLATOR_AZURE_API_KEY"):
+            provider = "azure"
+        elif os.getenv("README_TRANSLATOR_OPENAI_API_KEY"):
             provider = "openai"
         elif os.getenv("README_TRANSLATOR_DEEPL_API_KEY"):
             provider = "deepl"
         else:
             return None
+
+    if provider == "azure":
+        api_key = os.getenv("README_TRANSLATOR_AZURE_API_KEY")
+        endpoint = os.getenv("README_TRANSLATOR_AZURE_ENDPOINT", "https://api.cognitive.microsofttranslator.com")
+        region = os.getenv("README_TRANSLATOR_AZURE_REGION")
+        if not api_key:
+            raise TranslationError("README_TRANSLATOR_AZURE_API_KEY is required when README_TRANSLATOR_PROVIDER=azure.")
+        if not region:
+            raise TranslationError("README_TRANSLATOR_AZURE_REGION is required when README_TRANSLATOR_PROVIDER=azure.")
+        return AzureTranslator(api_key=api_key, endpoint=endpoint, region=region)
 
     if provider == "openai":
         api_key = os.getenv("README_TRANSLATOR_OPENAI_API_KEY")
@@ -365,17 +351,16 @@ class RenderContext:
             return fallback
         raise TranslationError(
             f"No translator is configured for {self.source_lang} -> {self.lang}. "
-            "Set README_TRANSLATOR_OPENAI_API_KEY or README_TRANSLATOR_DEEPL_API_KEY."
+            "Set README_TRANSLATOR_AZURE_API_KEY, README_TRANSLATOR_OPENAI_API_KEY, "
+            "or README_TRANSLATOR_DEEPL_API_KEY."
         )
 
     def ui(self, key: str) -> str:
         source = UI_SOURCE[key]
-        fallback = UI_FALLBACKS.get(self.lang, {}).get(key)
         if isinstance(source, list):
-            translated = [self.translate_or_fallback(item, (fallback or [None] * len(source))[index] if isinstance(fallback, list) else None)
-                for index, item in enumerate(source)]
+            translated = [self.translate_or_fallback(item) for item in source]
             return "\n".join(translated)
-        return self.translate_or_fallback(source, fallback if isinstance(fallback, str) else None)
+        return self.translate_or_fallback(source)
 
     def localized_value(self, value: Any, *, translate_plain: bool = True) -> str:
         if isinstance(value, dict):
@@ -383,12 +368,7 @@ class RenderContext:
                 return str(value[self.lang])
             if self.source_lang in value:
                 source_value = str(value[self.source_lang])
-                fallback = None
-                if self.lang in value:
-                    fallback = str(value[self.lang])
-                return self.translate_or_fallback(source_value, fallback)
-            if "en" in value and self.lang == "en":
-                return str(value["en"])
+                return self.translate_or_fallback(source_value)
             raise TranslationError(f"Unable to localize value for {self.lang}: {value!r}")
 
         if isinstance(value, str):
@@ -640,9 +620,7 @@ def render_readme(content: dict[str, Any], ctx: RenderContext) -> str:
         ]
     )
 
-    release_steps = UI_SOURCE["release_steps"] if ctx.lang == ctx.source_lang else UI_FALLBACKS.get(ctx.lang, {}).get("release_steps")
-    if release_steps is None:
-        release_steps = [ctx.translate_or_fallback(step) for step in UI_SOURCE["release_steps"]]
+    release_steps = UI_SOURCE["release_steps"] if ctx.lang == ctx.source_lang else [ctx.translate_or_fallback(step) for step in UI_SOURCE["release_steps"]]
     for index, step in enumerate(release_steps, start=1):
         lines.append(f"{index}. {step}")
 
