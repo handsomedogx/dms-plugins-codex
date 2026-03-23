@@ -171,11 +171,14 @@ For every new plugin created in this workspace:
 
 1. create the plugin directory in its own location
 2. run `git init -b main` inside that plugin directory immediately
-3. add a `.gitignore` before the first commit
-4. add an MIT `LICENSE` file before the first commit
-5. use `handsomedogx` as the copyright holder in that MIT license
-6. create an initial commit once the scaffold is runnable
-7. publish that plugin to its own remote repository
+3. set repository-local Git identity immediately after init:
+   - `git config user.name "Codex"`
+   - `git config user.email "codex@local"`
+4. add a `.gitignore` before the first commit
+5. add an MIT `LICENSE` file before the first commit
+6. use `handsomedogx` as the copyright holder in that MIT license
+7. create an initial commit once the scaffold is runnable
+8. publish that plugin to its own remote repository
 
 For the workspace root:
 
@@ -203,7 +206,8 @@ Commit discipline:
 - do not leave finished code edits uncommitted at the end of a task when the repo is in a valid state
 - do not mix unrelated changes into the same commit
 - do not amend, rebase, or rewrite history unless the user explicitly asks
-- if Git identity is missing, set a repository-local identity instead of changing the global Git config
+- for new local repositories in this workspace, use repository-local Git identity `Codex <codex@local>`
+- do not change the global Git config for workspace plugin repositories
 - in a single-plugin repository, do not use the plugin name as `scope` by default because it duplicates repository context
 - only use `scope` when it adds real information such as `ui`, `ocr`, `settings`, `ipc`, or `docs`
 
