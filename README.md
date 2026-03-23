@@ -54,8 +54,8 @@ Use this section for the plugins you want people to notice first. Keep it short 
 
 ### Dank Translate
 
-[<img src="https://raw.githubusercontent.com/handsomedogx/DankTranslate/main/assets/ui.png" alt="Dank Translate UI preview" width="49%" />](https://github.com/handsomedogx/DankTranslate)
-[<img src="https://raw.githubusercontent.com/handsomedogx/DankTranslate/main/assets/setting.png" alt="Dank Translate settings preview" width="49%" />](https://github.com/handsomedogx/DankTranslate)
+[<img src="https://raw.githubusercontent.com/handsomedogx/DankTranslate/main/assets/ui.png" alt="Dank Translate UI preview" height="420" />](https://github.com/handsomedogx/DankTranslate)
+[<img src="https://raw.githubusercontent.com/handsomedogx/DankTranslate/main/assets/setting.png" alt="Dank Translate settings preview" height="420" />](https://github.com/handsomedogx/DankTranslate)
 
 - Plugin: `dankTranslate`
 - Type: `Widget`
@@ -67,8 +67,8 @@ Use this section for the plugins you want people to notice first. Keep it short 
 
 ### Dank Focus Time
 
-[<img src="https://raw.githubusercontent.com/handsomedogx/DankFocusTime/main/assets/ui.png" alt="Dank Focus Time UI preview" width="49%" />](https://github.com/handsomedogx/DankFocusTime)
-[<img src="https://raw.githubusercontent.com/handsomedogx/DankFocusTime/main/assets/setting.png" alt="Dank Focus Time settings preview" width="49%" />](https://github.com/handsomedogx/DankFocusTime)
+[<img src="https://raw.githubusercontent.com/handsomedogx/DankFocusTime/main/assets/ui.png" alt="Dank Focus Time UI preview" height="420" />](https://github.com/handsomedogx/DankFocusTime)
+[<img src="https://raw.githubusercontent.com/handsomedogx/DankFocusTime/main/assets/setting.png" alt="Dank Focus Time settings preview" height="420" />](https://github.com/handsomedogx/DankFocusTime)
 
 - Plugin: `dankFocusTime`
 - Type: `Widget`
