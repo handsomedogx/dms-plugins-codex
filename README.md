@@ -36,8 +36,8 @@ This root repository stores the workflows, conventions, and publishing rules.
 <td width="25%" valign="top">
 <img src="./assets/icons/video.svg" width="20" alt="Video-First Showcase" />
 
-<strong>Video-First Showcase</strong><br />
-Each plugin entry can point to a short demo video that shows the real workflow.
+<strong>Media Showcase</strong><br />
+Each plugin entry can point to screenshots or a short demo video that shows the real workflow.
 </td>
 <td width="25%" valign="top">
 <img src="./assets/icons/spark.svg" width="20" alt="Public Plugin Directory" />
@@ -54,12 +54,29 @@ Use this section for the plugins you want people to notice first. Keep it short 
 
 ### Dank Translate
 
+[<img src="https://raw.githubusercontent.com/handsomedogx/DankTranslate/main/assets/ui.png" alt="Dank Translate UI preview" width="49%" />](https://github.com/handsomedogx/DankTranslate)
+[<img src="https://raw.githubusercontent.com/handsomedogx/DankTranslate/main/assets/setting.png" alt="Dank Translate settings preview" width="49%" />](https://github.com/handsomedogx/DankTranslate)
+
 - Plugin: `dankTranslate`
 - Type: `Widget`
 - Repository: [GitHub](https://github.com/handsomedogx/DankTranslate)
+- Preview: [UI](https://raw.githubusercontent.com/handsomedogx/DankTranslate/main/assets/ui.png) | [Settings](https://raw.githubusercontent.com/handsomedogx/DankTranslate/main/assets/setting.png)
 - Demo: Pending
 - Status: `Beta`
 - Summary: Translate English and Chinese text from a popout or screenshot OCR workflow.
+
+### Dank Focus Time
+
+[<img src="https://raw.githubusercontent.com/handsomedogx/DankFocusTime/main/assets/ui.png" alt="Dank Focus Time UI preview" width="49%" />](https://github.com/handsomedogx/DankFocusTime)
+[<img src="https://raw.githubusercontent.com/handsomedogx/DankFocusTime/main/assets/setting.png" alt="Dank Focus Time settings preview" width="49%" />](https://github.com/handsomedogx/DankFocusTime)
+
+- Plugin: `dankFocusTime`
+- Type: `Widget`
+- Repository: [GitHub](https://github.com/handsomedogx/DankFocusTime)
+- Preview: [UI](https://raw.githubusercontent.com/handsomedogx/DankFocusTime/main/assets/ui.png) | [Settings](https://raw.githubusercontent.com/handsomedogx/DankFocusTime/main/assets/setting.png)
+- Demo: Pending
+- Status: `Beta`
+- Summary: Track focused-window time and browse per-app focus history from a bar popout.
 
 **Template**
 
@@ -69,6 +86,7 @@ Use this section for the plugins you want people to notice first. Keep it short 
 - Plugin: `plugin-id`
 - Type: `Widget / Launcher / Daemon / Desktop`
 - Repository: [GitHub](https://github.com/<user>/<repo>)
+- Preview: [UI](https://example.com/ui.png) | [Settings](https://example.com/settings.png)
 - Demo: [Video](https://example.com/demo)
 - Status: `Active`
 - Summary: one-line explanation of what makes the plugin useful
@@ -78,14 +96,15 @@ Use this section for the plugins you want people to notice first. Keep it short 
 
 Add one row per public or released plugin.
 
-| Plugin | Type | Repository | Demo | DMS | Status | Summary |
-| --- | --- | --- | --- | --- | --- | --- |
-| Dank Translate | Widget | [GitHub](https://github.com/handsomedogx/DankTranslate) | Pending | 1.4+ | Beta | Translate English and Chinese text from a popout or screenshot OCR workflow. |
+| Plugin | Type | Repository | Preview | Demo | DMS | Status | Summary |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Dank Translate | Widget | [GitHub](https://github.com/handsomedogx/DankTranslate) | [UI](https://raw.githubusercontent.com/handsomedogx/DankTranslate/main/assets/ui.png) / [Settings](https://raw.githubusercontent.com/handsomedogx/DankTranslate/main/assets/setting.png) | Pending | 1.4+ | Beta | Translate English and Chinese text from a popout or screenshot OCR workflow. |
+| Dank Focus Time | Widget | [GitHub](https://github.com/handsomedogx/DankFocusTime) | [UI](https://raw.githubusercontent.com/handsomedogx/DankFocusTime/main/assets/ui.png) / [Settings](https://raw.githubusercontent.com/handsomedogx/DankFocusTime/main/assets/setting.png) | Pending | 1.4+ | Beta | Track focused-window time and browse per-app focus history from a bar popout. |
 
 **Template for a new row**
 
 ```md
-| Plugin Name | Widget / Launcher / Daemon / Desktop | [GitHub](https://github.com/<user>/<repo>) | [Video](https://example.com/demo) | 1.4+ | Active | Short one-line description |
+| Plugin Name | Widget / Launcher / Daemon / Desktop | [GitHub](https://github.com/<user>/<repo>) | [UI](https://example.com/ui.png) / [Settings](https://example.com/settings.png) | [Video](https://example.com/demo) | 1.4+ | Active | Short one-line description |
 ```
 
 **Recommended status labels**
@@ -100,11 +119,11 @@ Add one row per public or released plugin.
 Each public plugin entry should eventually have:
 
 - one repository link
-- one demo video link
+- one screenshot preview or demo video link
 - one concise summary
 - one compatibility note if needed
 
-Optional local media can live under `assets/` using the plugin id or repository name:
+Optional media can either stay in each plugin repository and be embedded here with raw GitHub links, or live under `assets/` in this index repository:
 
 ```text
 assets/
@@ -114,11 +133,11 @@ assets/
     └── notes.txt
 ```
 
-**Recommended demo coverage:**
+**Recommended media coverage:**
 
-- show the widget or entry point in the first few seconds
-- show the main workflow in under 30 to 60 seconds
-- show one real interaction instead of only static screenshots
+- show the widget or entry point immediately
+- include both the primary UI and the settings view when using screenshots
+- keep demo videos focused on one real interaction instead of only static screenshots
 
 ## Standards
 
