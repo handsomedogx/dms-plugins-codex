@@ -22,25 +22,33 @@ Plugin source code does not live here. Each plugin is developed and released in 
 <table>
 <tr>
 <td width="25%" valign="top">
-<img src="./assets/icons/repo.svg" width="20" alt="One Repo Per Plugin" />
+<p align="center">
+<img src="./assets/icons/repo.svg" width="50" alt="One Repo Per Plugin" />
+</p>
 
 <strong>One Repo Per Plugin</strong><br />
 Every public plugin lives in its own source repository and release flow.
 </td>
 <td width="25%" valign="top">
-<img src="./assets/icons/rules.svg" width="20" alt="Shared Standards" />
+<p align="center">
+<img src="./assets/icons/rules.svg" width="50" alt="Shared Standards" />
+</p>
 
 <strong>Shared Standards</strong><br />
 This root repository stores the workflows, conventions, and publishing rules.
 </td>
 <td width="25%" valign="top">
-<img src="./assets/icons/video.svg" width="20" alt="Video-First Showcase" />
+<p align="center">
+<img src="./assets/icons/video.svg" width="50" alt="Video-First Showcase" />
+</p>
 
 <strong>Media Showcase</strong><br />
 Each plugin entry can point to screenshots or a short demo video that shows the real workflow.
 </td>
 <td width="25%" valign="top">
-<img src="./assets/icons/spark.svg" width="20" alt="Public Plugin Directory" />
+<p align="center">
+<img src="./assets/icons/spark.svg" width="50" alt="Public Plugin Directory" />
+</p>
 
 <strong>Public Plugin Directory</strong><br />
 Repository links, compatibility notes, and summaries stay in one public place.
@@ -53,6 +61,7 @@ Repository links, compatibility notes, and summaries stay in one public place.
 Use this section for the plugins you want people to notice first. Keep it short and visual.
 
 ### Dank Translate
+
 
 [<img src="https://raw.githubusercontent.com/handsomedogx/DankTranslate/main/assets/ui.png" alt="Dank Translate UI preview" height="420" />](https://github.com/handsomedogx/DankTranslate)
 [<img src="https://raw.githubusercontent.com/handsomedogx/DankTranslate/main/assets/setting.png" alt="Dank Translate settings preview" height="420" />](https://github.com/handsomedogx/DankTranslate)
